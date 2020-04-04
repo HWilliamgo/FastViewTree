@@ -1,4 +1,4 @@
-package com.hwilliamgo.fastviewtree
+package com.hwilliamgo.example
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

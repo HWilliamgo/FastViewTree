@@ -1,4 +1,4 @@
-package com.hwilliamgo.fastviewtree
+package com.hwilliamgo.example
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
