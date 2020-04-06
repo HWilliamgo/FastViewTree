@@ -1,0 +1,13 @@
+apply plugin: 'com.novoda.bintray-release'
+
+publish {
+    userOrg = "huangwilliam33333"//组织，如果没有创建组织，就直接填写用户名。
+    groupId = 'com.hwilliamgo'//group
+    artifactId = 'fastviewtree'//module
+    publishVersion = rootProject.versionName//版本
+    desc = 'Android View Tree 信息获取'//描述
+    website = 'htttp://www.baidu.com'//网站，随便填
+    bintrayUser = "huangwilliam33333"//用户名
+    bintrayKey = ""//bintray秘钥
+    dryRun = false//如果这个是true，则只是运行，而不会上传，要配置成false
+}
