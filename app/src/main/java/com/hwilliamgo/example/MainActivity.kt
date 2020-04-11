@@ -19,6 +19,5 @@ class MainActivity : AppCompatActivity() {
             tv.setText(getViewTreeString())
             Log.d(TAG, getViewTreeString())
         }
-
     }
 }

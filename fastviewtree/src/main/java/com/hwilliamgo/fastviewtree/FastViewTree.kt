@@ -1,3 +1,5 @@
+@file:JvmName("FastViewTree")
+
 package com.hwilliamgo.fastviewtree
 
 import android.app.Activity
@@ -12,10 +14,12 @@ import android.view.ViewGroup
  * description: 打印View tree
  */
 
+
 /**
  * 获取该View的view树信息，以字符串返回
  * [extraInfoCallback] : 额外拼接的信息
  */
+@JvmOverloads
 fun View?.getViewTreeString(
     withWidthAndHeightInfo: Boolean = true,
     withVisibilityInfo: Boolean = true,
@@ -54,6 +58,7 @@ fun View?.getViewTreeString(
  * 获取该Activity的view树信息，以字符串返回
  *[extraInfoCallback] : 额外拼接的信息
  */
+@JvmOverloads
 fun Activity?.getViewTreeString(
     withWidthAndHeightInfo: Boolean = true,
     withVisibilityInfo: Boolean = true, extraInfoCallback: ((v: View) -> String)? = null
