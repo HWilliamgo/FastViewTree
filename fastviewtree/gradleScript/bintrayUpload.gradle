@@ -1,13 +1,48 @@
-apply plugin: 'com.novoda.bintray-release'
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'maven-publish'
 
-publish {
-    userOrg = "huangwilliam33333"//组织，如果没有创建组织，就直接填写用户名。
-    groupId = 'com.hwilliamgo'//group
-    artifactId = 'fastviewtree'//module
-    publishVersion = rootProject.versionName//版本
-    desc = 'Android View Tree 信息获取'//描述
-    website = 'htttp://www.baidu.com'//网站，随便填
-    bintrayUser = "huangwilliam33333"//用户名
-    bintrayKey = ""//bintray秘钥
-    dryRun = false//如果这个是true，则只是运行，而不会上传，要配置成false
+publishing {
+    publications {
+        MyPublication(MavenPublication) {
+//            //android project not applicable
+//            from components.java
+//            artifact sourcesJar
+//            artifact javadocJar
+            artifact("$buildDir/outputs/aar/fastviewtree-release.aar")
+            groupId 'com.hwilliamgo'
+            artifactId "fastviewtree"
+            version rootProject.versionName
+            pom.withXml {
+                def dependenciesNode = asNode().getAt('dependencies')[0] ?: asNode().appendNode('dependencies')
+
+                // Iterate over the implementation dependencies (we don't want the test ones), adding a <dependency> node for each
+                configurations.implementation.allDependencies.each {
+                    // Ensure dependencies such as fileTree are not included.
+                    if (it.name != 'unspecified') {
+                        if (it.name == "kotlin-android-extensions-runtime"){
+                            return
+                        }
+                        def dependencyNode = dependenciesNode.appendNode('dependency')
+                        dependencyNode.appendNode('groupId', it.group)
+                        dependencyNode.appendNode('artifactId', it.name)
+                        dependencyNode.appendNode('version', it.version)
+                    }
+                }
+            }
+        }
+    }
+}
+
+bintray {
+    user = 'huangwilliam33333'
+    key = 'api-key'
+    pkg {
+        repo = 'maven'
+        name = 'fastviewtree'
+        userOrg = 'huangwilliam33333'
+        version {
+            name = rootProject.versionName
+        }
+    }
+    publications = ['MyPublication']
 }
