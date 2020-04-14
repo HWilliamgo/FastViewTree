@@ -1,17 +1,46 @@
+//定义插件
 apply plugin: 'com.jfrog.bintray'
 apply plugin: 'maven-publish'
+
+//read from local.properties
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+def bintrayApiKey = properties.getProperty('bintrayApiKey')
+
+ext {
+    groupId = "com.hwilliamgo"
+    artifactId = "fastviewtree"
+    user = "huangwilliam33333"
+    repo = 'maven'
+    dryRun = false
+    apiKey = bintrayApiKey
+}
+
+//打包源码
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+//    classifier = 'sources'
+    archiveClassifier = 'sources'
+}
 
 publishing {
     publications {
         MyPublication(MavenPublication) {
-//            //android project not applicable
-//            from components.java
-//            artifact sourcesJar
-//            artifact javadocJar
-            artifact("$buildDir/outputs/aar/fastviewtree-release.aar")
-            groupId 'com.hwilliamgo'
-            artifactId "fastviewtree"
+            //源码
+            artifact sourcesJar
+
+            //javadoc
+            //artifact javadocJar
+
+            //aar
+            artifact("$buildDir/outputs/aar/${artifactId}-release.aar")
+
+            //meta info
+            groupId project.ext.groupId
+            artifactId project.ext.artifactId
             version rootProject.versionName
+
+            //pom文件的依赖
             pom.withXml {
                 def dependenciesNode = asNode().getAt('dependencies')[0] ?: asNode().appendNode('dependencies')
 
@@ -19,7 +48,8 @@ publishing {
                 configurations.implementation.allDependencies.each {
                     // Ensure dependencies such as fileTree are not included.
                     if (it.name != 'unspecified') {
-                        if (it.name == "kotlin-android-extensions-runtime"){
+                        //过滤掉一些无用的依赖
+                        if (it.name == "kotlin-android-extensions-runtime") {
                             return
                         }
                         def dependencyNode = dependenciesNode.appendNode('dependency')
@@ -34,15 +64,17 @@ publishing {
 }
 
 bintray {
-    user = 'huangwilliam33333'
-    key = 'api-key'
+    user = project.ext.user
+    key = project.ext.apiKey
     pkg {
-        repo = 'maven'
-        name = 'fastviewtree'
-        userOrg = 'huangwilliam33333'
+        repo = project.ext.repo
+        name = project.ext.artifactId
+        userOrg = project.ext.user
         version {
             name = rootProject.versionName
+            released = new Date()
         }
+        dryRun = project.ext.dryRun
     }
     publications = ['MyPublication']
 }
