@@ -16,8 +16,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         tv.post {
-            tv.setText(getViewTreeString())
-            Log.d(TAG, getViewTreeString())
+            Log.d(TAG, getViewTreeString(extraInfoCallback = {
+                " ${it.javaClass.simpleName}"
+            }))
         }
     }
 }

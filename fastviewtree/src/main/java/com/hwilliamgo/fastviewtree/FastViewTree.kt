@@ -46,7 +46,7 @@ fun View?.getViewTreeString(
             sb.append(" visibility=$visibility")
         }
         extraInfoCallback?.let {
-            sb.append(it.invoke(this))
+            sb.append(it.invoke(v))
         }
         sb.toString()
     }
