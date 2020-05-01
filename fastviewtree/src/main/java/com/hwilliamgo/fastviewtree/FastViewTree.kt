@@ -37,7 +37,7 @@ fun View?.getViewTreeString(
         //可见性信息
         if (withVisibilityInfo) {
             val visibility =
-                when (this.visibility) {
+                when (v.visibility) {
                     View.VISIBLE -> "VISIBLE"
                     View.INVISIBLE -> "INVISIBLE"
                     View.GONE -> "GONE"

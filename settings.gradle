@@ -1,2 +1,2 @@
-include ':app', ':fastviewtree'
+include ':app', ':fastviewtree', ':purejava'
 rootProject.name='FastViewTree'
