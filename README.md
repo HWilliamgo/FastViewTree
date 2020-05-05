@@ -72,4 +72,4 @@ val viewTreeInfo=getViewTreeString {v:View->
 
 ### 开发背景
 
-[Android调试View工具-md]([https://hwilliamgo.github.io/2020/05/05/%E4%B8%AA%E4%BA%BA%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/Android%E8%B0%83%E8%AF%95View%E5%B7%A5%E5%85%B7-md/](https://hwilliamgo.github.io/2020/05/05/个人开源项目/Android调试View工具-md/))
+[Android调试View工具-md](https://hwilliamgo.github.io/2020/05/05/个人开源项目/Android调试View工具-md/)
