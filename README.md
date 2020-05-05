@@ -6,22 +6,13 @@
 
 
 
+`FastViewTree` is a Kotlin written android lib which provides the ability to fetch the view tree information during runtime. 
 
-
-`FastViewTree` is a Kotlin written android lib which provides the ability to fetch the view tree information during runtime. `FastViewTree` gives you another option during debugging some complex UI issue.
+`FastViewTree` gives you another option during debugging some complex UI issue.
 
 `FastViewTree` comes with not only view tree info but also size and visibility info of the view.
 
 The coordinates info of view is not yet included but is on the plan.
-
-
-
-FastViewTree是Kotlin编写的android库，它提供了在运行时获取视图树信息的能力。“FastViewTree”在调试一些复杂的UI问题时提供了另一个选项。
-
-FastViewTree不仅提供了视图树信息，还提供了视图的大小和可见性信息。
-
-视图的坐标信息尚未包括在内，但在计划中。
-
 
 
 ### Download
