@@ -35,5 +35,5 @@ dependencies {
 
 //    implementation project(path: ':fastviewtree')
     implementation project(path: ':purejava')
-    implementation ("com.hwilliamgo:fastviewtree:1.0.3")
+    implementation ("com.hwilliamgo:fastviewtree:1.0.4")
 }
