@@ -12,7 +12,7 @@
 
 `FastViewTree` comes with not only view tree info but also size and visibility info of the view.
 
-The coordinates info of view is not yet included but is on the plan.
+The coordinates info of view is not yet included but is in the plan.
 
 
 ### Download
