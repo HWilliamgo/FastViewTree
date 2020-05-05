@@ -2,6 +2,7 @@ package com.hwilliamgo.example
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.hwilliamgo.fastviewtree.getViewTreeString
@@ -18,6 +19,10 @@ class MainActivity : AppCompatActivity() {
 
         tv.post {
             Log.d(TAG, getViewTreeString())
+        }
+
+        val viewTreeInfo=getViewTreeString {v:View->
+            "x= ${v.x}, y=${v.y}"
         }
     }
 }

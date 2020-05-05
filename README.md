@@ -34,10 +34,26 @@ implementation ("com.hwilliamgo:fastviewtree:1.0.4")
 
 ### Api -> FastViewTree.kt
 
+
+
+#### 公开方法
+
 | function                    | explain                |
 | --------------------------- | ---------------------- |
 | View?.getViewTreeString     | 获取该View的view树信息，以字符串返回 |
 | Activity?.getViewTreeString | 获取该Activity的view树信息，以字符串返回 |
+
+
+
+#### 自定义信息
+
+FastViewTree提供了回调的形式来为每个遍历到的View添加额外的你可以自定义的信息，例如：
+
+``` kotlin
+val viewTreeInfo=getViewTreeString {v:View-> 
+    "x=${v.x}, y=${v.y}"
+}
+```
 
 
 
