@@ -2,7 +2,7 @@
 
 # FastViewTree
 
-![](https://img.shields.io/badge/language-Kotlin-blueviolet.svg)  [![Download](https://api.bintray.com/packages/huangwilliam33333/maven/fastviewtree/images/download.svg?version=1.0.4)](https://bintray.com/huangwilliam33333/maven/fastviewtree/1.0.4/link) 
+![](https://img.shields.io/badge/language-Kotlin-blueviolet.svg)  [![Download](https://api.bintray.com/packages/huangwilliam33333/maven/fastviewtree/images/download.svg?version=1.0.5)](https://bintray.com/huangwilliam33333/maven/fastviewtree/1.0.5/link) 
 
 
 
@@ -18,7 +18,7 @@ The coordinates info of view is not yet included but is in the plan.
 ### Download
 
 ``` groovy
-implementation ("com.hwilliamgo:fastviewtree:1.0.4")
+implementation ("com.hwilliamgo:fastviewtree:1.0.5")
 ```
 
 
