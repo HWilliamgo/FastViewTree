@@ -6,6 +6,7 @@ import android.app.Activity
 import android.content.res.Resources
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 
 
 /**
@@ -15,6 +16,7 @@ import android.view.ViewGroup
  */
 
 
+// <editor-fold defaultstate="collapsed" desc="API">
 /**
  * 获取该View的view树信息，以字符串返回
  * [extraInfoCallback] : 额外拼接的信息
@@ -74,6 +76,27 @@ fun Activity?.getViewTreeString(
 }
 
 
+/**
+ * 在Activity左上角添加一个button，点击button将会产生view tree 字符串，并将该字符串通过[callback]回调出去
+ */
+@JvmOverloads
+fun Activity.createButtonToPrint(
+    callback: (viewTreeStringToPrint: String) -> Unit,
+    extraInfoCallback: ((v: View) -> String)? = null
+) {
+    val contentView = findViewById<View>(android.R.id.content) as ViewGroup
+    contentView.addView(
+        Button(this).apply {
+            setOnClickListener {
+                callback.invoke(this@createButtonToPrint.getViewTreeString(extraInfoCallback = extraInfoCallback))
+            }
+        },
+        ViewGroup.LayoutParams.WRAP_CONTENT,
+        ViewGroup.LayoutParams.WRAP_CONTENT
+    )
+}
+// </editor-fold>
+
 // <editor-fold defaultstate="collapsed" desc="私有">
 private fun getViewHierarchy(v: View, extraInfoCallback: ((v: View) -> String)? = null): String {
     val desc = StringBuilder()
@@ -129,9 +152,11 @@ private fun getViewMessage(
         }
     } ?: "null resources"
     return if (extraInfoCallback != null) {
-        "$marginByBlank[${v.javaClass.simpleName}] $resourceId   ${extraInfoCallback.invoke(
-            v
-        )}\n"
+        "$marginByBlank[${v.javaClass.simpleName}] $resourceId   ${
+            extraInfoCallback.invoke(
+                v
+            )
+        }\n"
     } else {
         "$marginByBlank[${v.javaClass.simpleName}] $resourceId\n"
     }
