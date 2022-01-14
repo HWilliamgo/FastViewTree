@@ -45,6 +45,7 @@ implementation ("com.hwilliamgo:fastviewtree:1.0.5")
 | --------------------------- | ---------------------- |
 | View?.getViewTreeString     | 获取该View的view树信息，以字符串返回 |
 | Activity?.getViewTreeString | 获取该Activity的view树信息，以字符串返回 |
+| Activity.createButtonToPrint| 在Activity左上角创建一个按钮，点击后在回调中返回view树字符串|
 
 
 
