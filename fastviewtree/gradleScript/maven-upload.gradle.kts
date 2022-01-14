@@ -1,0 +1,7 @@
+plugins {
+    "maven-publish"
+}
+
+
+
+

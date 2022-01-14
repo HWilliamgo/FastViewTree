@@ -11,8 +11,8 @@ android {
         applicationId = "com.hwilliamgo.fastviewtree"
         minSdkVersion(15)
         targetSdkVersion(29)
-        val version_code :Int by extra
-        val version_name:String by extra
+        val version_code :Int by rootProject.extra
+        val version_name:String by rootProject.extra
         versionCode = version_code
         versionName = version_name
         testInstrumentationRunner="androidx.test.runner.AndroidJUnitRunner"
@@ -27,7 +27,7 @@ android {
 
 dependencies {
     implementation(fileTree("libs") { include("*.java") })
-    val kotlin_version: String by extra
+    val kotlin_version: String by rootProject.extra
     implementation ("org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version")
     implementation("androidx.appcompat:appcompat:1.0.2")
     implementation("androidx.core:core-ktx:1.0.2")
