@@ -3,10 +3,11 @@
 - [FastViewTree](#fastviewtree)
     - [Download](#download)
     - [Api -> FastViewTree.kt](#api---fastviewtreekt)
-      - [公开方法](#%E5%85%AC%E5%BC%80%E6%96%B9%E6%B3%95)
-      - [自定义信息](#%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BF%A1%E6%81%AF)
-    - [效果](#%E6%95%88%E6%9E%9C)
-    - [开发背景](#%E5%BC%80%E5%8F%91%E8%83%8C%E6%99%AF)
+      - [公开方法](#公开方法)
+      - [自定义信息](#自定义信息)
+    - [效果](#效果)
+    - [开发背景](#开发背景)
+    - [SDK包分发](#sdk包分发)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -14,7 +15,7 @@
 
 # FastViewTree
 
-![](https://img.shields.io/badge/language-Kotlin-blueviolet.svg)  [![Download](https://api.bintray.com/packages/huangwilliam33333/maven/fastviewtree/images/download.svg?version=1.0.5)](https://bintray.com/huangwilliam33333/maven/fastviewtree/1.0.5/link) 
+![](https://img.shields.io/badge/language-Kotlin-blueviolet.svg)
 
 
 
@@ -29,8 +30,15 @@ The coordinates info of view is not yet included but is in the plan.
 
 ### Download
 
-``` groovy
-implementation ("com.hwilliamgo:fastviewtree:1.0.5")
+``` kotlin
+// 仓库配置
+allprojects {
+    repositories {
+        maven("https://gitee.com/HWilliamgo/maven-repository/raw/SNAPSHOT")
+    }
+}
+// 依赖配置
+implementation ("com.hwilliamgo:fastviewtree:1.0.6")
 ```
 
 
@@ -77,3 +85,11 @@ val viewTreeInfo=getViewTreeString {v:View->
 ### 开发背景
 
 [Android调试View工具-md](https://hwilliamgo.github.io/2020/05/05/个人开源项目/Android调试View工具-md/)
+
+### SDK包分发
+
+使用当前gradle官网最新的maven-publish插件。
+
+[Gradle Maven Publish Plugin](https://docs.gradle.org/current/userguide/publishing_maven.html)
+
+[Android开发者：使用 Maven Publish 插件](https://developer.android.google.cn/studio/build/maven-publish-plugin?hl=zh-cn)
