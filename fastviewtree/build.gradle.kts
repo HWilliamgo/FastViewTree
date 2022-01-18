@@ -47,17 +47,16 @@ afterEvaluate {
                 from(components["release"])
                 groupId = "com.hwilliamgo"
                 artifactId = "fastviewtree"
-                version = "1.0.5-SNAPSHOT"
+                version = "1.0.6-SNAPSHOT"
             }
         }
         repositories {
             maven {
                 // change URLs to point to your repos, e.g. http://my.org/repo
-                val releasesRepoUrl = uri(layout.buildDirectory.dir("repos/releases"))
+                val releasesRepoUrl = uri(file("/Users/HWilliam/maven/maven-repository"))
                 val snapshotsRepoUrl = uri(layout.buildDirectory.dir("repos/snapshots"))
-                url = if (version.toString()
-                        .endsWith("SNAPSHOT")
-                ) snapshotsRepoUrl else releasesRepoUrl
+                url = if (version.toString().endsWith("SNAPSHOT"))
+                    snapshotsRepoUrl else releasesRepoUrl
             }
         }
     }

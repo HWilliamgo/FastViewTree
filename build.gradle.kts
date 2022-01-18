@@ -5,7 +5,6 @@ buildscript {
     repositories {
         extra["kotlin_version"] = "1.3.71"
         google()
-        jcenter()
         mavenCentral()
     }
     dependencies {
@@ -19,8 +18,12 @@ buildscript {
 allprojects {
     repositories {
         google()
-        jcenter()
         mavenCentral()
+
+        // 以下二者选其一，gitee速度较快，github可能被墙
+//        maven("https://github.com/HWilliamgo/maven-repository/raw/SNAPSHOT")
+        maven("https://gitee.com/HWilliamgo/maven-repository/raw/SNAPSHOT")
+
     }
 }
 
