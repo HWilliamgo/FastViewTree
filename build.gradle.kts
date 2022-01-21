@@ -21,14 +21,11 @@ allprojects {
         mavenCentral()
 
         // 以下二者选其一，gitee速度较快，github可能被墙
-//        maven("https://github.com/HWilliamgo/maven-repository/raw/SNAPSHOT")
-        maven("https://gitee.com/HWilliamgo/maven-repository/raw/SNAPSHOT")
+//        maven("https://github.com/HWilliamgo/maven-repository/raw/master")
+        maven("https://gitee.com/HWilliamgo/maven-repository/raw/master")
 
     }
 }
-
-extra["version_name"] = "1.0.5"
-extra["version_code"] = 5
 
 tasks.register<Delete>("clean") {
     delete(rootProject.buildDir)

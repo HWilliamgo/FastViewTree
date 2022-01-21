@@ -4,6 +4,9 @@ plugins {
     id("kotlin-android-extensions")
     id("maven-publish")
 }
+
+var srcDirs: Set<File>? = null
+
 android {
     compileSdkVersion(29)
     buildToolsVersion("29.0.2")
@@ -12,10 +15,8 @@ android {
     defaultConfig {
         minSdkVersion(15)
         targetSdkVersion(29)
-        val version_code: Int by rootProject.extra
-        val version_name: String by rootProject.extra
-        versionCode = version_code
-        versionName = version_name
+        versionCode = Version.versionCode
+        versionName = Version.versionName
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -26,7 +27,11 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
         }
     }
-
+    sourceSets {
+        getByName("main") {
+            srcDirs = java.srcDirs
+        }
+    }
 }
 
 dependencies {
@@ -36,35 +41,29 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.1.1")
 }
 
-
-java {
-
+tasks.register<Jar>("androidSourcesJar") {
+    archiveClassifier.set("sources")
+    from(srcDirs)
 }
+
 afterEvaluate {
     publishing {
         publications {
             create<MavenPublication>("ReleasePKG") {
                 from(components["release"])
-                groupId = "com.hwilliamgo"
-                artifactId = "fastviewtree"
-                version = "1.0.6-SNAPSHOT"
+                groupId = Version.groupId
+                artifactId = Version.artifactId
+                version = Version.versionName
+                artifact(tasks.findByName("androidSourcesJar"))
             }
         }
         repositories {
             maven {
-                // change URLs to point to your repos, e.g. http://my.org/repo
-                val releasesRepoUrl = uri(file("/Users/HWilliam/maven/maven-repository"))
                 val snapshotsRepoUrl = uri(layout.buildDirectory.dir("repos/snapshots"))
-                url = if (version.toString().endsWith("SNAPSHOT"))
+                val releasesRepoUrl = uri(file("/Users/HWilliam/maven/maven-repository"))
+                url = if (Version.versionName.endsWith("SNAPSHOT"))
                     snapshotsRepoUrl else releasesRepoUrl
             }
         }
     }
 }
-
-//tasks.javadoc {
-//    if (JavaVersion.current().isJava9Compatible) {
-//        (options as StandardJavadocDocletOptions).addBooleanOption("html5", true)
-//    }
-//}
-

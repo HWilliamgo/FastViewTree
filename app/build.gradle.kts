@@ -11,10 +11,8 @@ android {
         applicationId = "com.hwilliamgo.fastviewtree"
         minSdkVersion(15)
         targetSdkVersion(29)
-        val version_code: Int by rootProject.extra
-        val version_name: String by rootProject.extra
-        versionCode = version_code
-        versionName = version_name
+        versionCode = Version.versionCode
+        versionName = Version.versionName
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -38,7 +36,7 @@ dependencies {
 
 //    implementation(project(":fastviewtree"))
     implementation(project(":purejava"))
-    implementation(("com.hwilliamgo:fastviewtree:1.0.6-SNAPSHOT")) {
+    implementation(("com.hwilliamgo:fastviewtree:1.0.6")) {
         isChanging = true
     }
 }
